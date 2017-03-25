@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PracaInz.Models.Average>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista najlepszych aut</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Wyszukaj model: @Html.TextBox("search")
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Model
+        </th>
+        <th>
+           Średnia ocen
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Car.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Srednia)
+        </td>
+    </tr>
+}
+
+</table>
