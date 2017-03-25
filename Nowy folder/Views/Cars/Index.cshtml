@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PracaInz.Models.Car>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Baza Aut</h2>
+
+<p>
+    @Html.ActionLink("Utwórz nowy", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Wyszukaj model: @Html.TextBox("search")
+        <input type="submit" value="Szukaj" />
+    </p>
+    }
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Nadwozie
+            </th>
+            <th>
+                Segment
+            </th>
+            <th>
+                Pojemność
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Zdjęcie
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nadwozie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Segment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pojemnosc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    @Html.Image(@item.Image) 
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new { id = item.CarId }) |
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.CarId }) |
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.CarId })
+                </td>
+            </tr>
+        }
+
+    </table>
